@@ -10,17 +10,21 @@ public class Main {
         int randomNumber;
         int userNumber;
 
+        Player player = new Player();
+        player.setName("Ziutek");
         do {
             randomNumber = cube.nextInt(6) + 1;
-            System.out.print("Podaj liczbe: ");
-            userNumber = cube.nextInt(6) + 1;
+            System.out.println("Wylosowano: " + randomNumber);
+            userNumber = player.guess();
+            System.out.println("Strzal gracza " + player.getName() + " to " + userNumber);
 
             if (randomNumber == userNumber) {
                 System.out.println("Bingo!!!");
                 break;
             } else {
-                System.out.println("Zle. Wylosowana liczba to: " + randomNumber);
+                System.out.println("Zle :(");
             }
+
         } while (true);
     }
 }
