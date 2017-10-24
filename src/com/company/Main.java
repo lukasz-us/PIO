@@ -11,20 +11,27 @@ public class Main {
         int userNumber;
 
         Player player = new Player();
-        player.setName("Ziutek");
-        do {
-            randomNumber = cube.nextInt(6) + 1;
-            System.out.println("Wylosowano: " + randomNumber);
-            userNumber = player.guess();
-            System.out.println("Strzal gracza " + player.getName() + " to " + userNumber);
 
-            if (randomNumber == userNumber) {
-                System.out.println("Bingo!!!");
-                break;
-            } else {
-                System.out.println("Zle :(");
-            }
+        try {
+            player.setName("");
 
-        } while (true);
+            do {
+                randomNumber = cube.nextInt(6) + 1;
+                System.out.println("Wylosowano: " + randomNumber);
+                userNumber = player.guess();
+                System.out.println("Strzal gracza " + player.getName() + " to " + userNumber);
+
+                if (randomNumber == userNumber) {
+                    System.out.println("Bingo!!!");
+                    break;
+                } else {
+                    System.out.println("Zle :(");
+                }
+
+            } while (true);
+
+        } catch (IllegalArgumentException e) {
+            System.err.println("Blad: " + e.getMessage());
+        }
     }
 }
