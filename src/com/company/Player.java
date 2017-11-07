@@ -2,15 +2,22 @@ package com.company;
 
 import java.util.Random;
 
-public class Player {
-    private Random random = new Random();
-    private String name;
+public abstract class Player {
 
-    public String getName() {
+    private String name = "Antoni";
+
+    public Player() {
+    }
+
+    public Player(String name) {
+        setName(name);
+    }
+
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(String name) {
         if (name != null && !name.isEmpty()) {
             this.name = name;
         } else {
@@ -18,7 +25,5 @@ public class Player {
         }
     }
 
-    public int guess() {
-        return random.nextInt(6) + 1;
-    }
+    public abstract int guess();
 }
