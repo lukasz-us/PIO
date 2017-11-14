@@ -1,37 +1,41 @@
 package com.company;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Random cube = new Random();
-        int randomNumber;
-        int userNumber;
 
-        Player player = new Player();
+        List<String> list = new ArrayList();
 
-        try {
-            player.setName("");
+        list.add("jeden");
+        list.add("dwa");
+        list.add("trzy");
 
-            do {
-                randomNumber = cube.nextInt(6) + 1;
-                System.out.println("Wylosowano: " + randomNumber);
-                userNumber = player.guess();
-                System.out.println("Strzal gracza " + player.getName() + " to " + userNumber);
+        for (String element:list) {
+            System.out.println(element);
 
-                if (randomNumber == userNumber) {
-                    System.out.println("Bingo!!!");
-                    break;
-                } else {
-                    System.out.println("Zle :(");
-                }
-
-            } while (true);
-
-        } catch (IllegalArgumentException e) {
-            System.err.println("Blad: " + e.getMessage());
         }
+
+        System.out.println("===================");
+
+        Iterator <String> iterator=list.iterator();
+
+        while (iterator.hasNext()){
+            String element=iterator.next();
+            System.out.println(element);
+        }
+
+
+        //Player player = new PlayerComp("Ewa");
+
+        //Game game = new Game();
+        //game.add(player);
+        //game.play();
+
+
     }
 }
