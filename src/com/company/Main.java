@@ -1,41 +1,22 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) {
 
+        Player player = new PlayerComp("Ewa");
 
-        List<String> list = new ArrayList();
+        Game game = new Game();
+        game.add(player);
+        game.add(new PlayerComp("Andrzej"));
+        game.add(new PlayerComp("Waldek"));
+        game.add(new PlayerComp("Waldek"));
+        game.add(new PlayerComp("Waldek"));
 
-        list.add("jeden");
-        list.add("dwa");
-        list.add("trzy");
-
-        for (String element:list) {
-            System.out.println(element);
-
-        }
-
-        System.out.println("===================");
-
-        Iterator <String> iterator=list.iterator();
-
-        while (iterator.hasNext()){
-            String element=iterator.next();
-            System.out.println(element);
-        }
-
-
-        //Player player = new PlayerComp("Ewa");
-
-        //Game game = new Game();
-        //game.add(player);
-        //game.play();
-
-
+        game.play();
+        game.play();
+        game.play();
+        game.play();
+        game.printStats();
     }
 }

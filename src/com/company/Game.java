@@ -1,39 +1,61 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class Game {
 
-    private Player player=new PlayerComp("Adam");
+    private Map<String, Integer> stats = new HashMap();
     private Random cube = new Random();
-    private int randomNumber;
-    private int userNumber;
+    private List<Player> players = new ArrayList();
 
-    void add(Player player) {
-        this.player = player;
+    void printStats(){
+        System.out.println();
+        stats.forEach((name,points)->System.out.println(name + ": " + points));
     }
 
-    void play(){
+    void add(Player player) {
         if (player == null) {
             throw new IllegalArgumentException("Nie podano gracza");
         }
+        for (Player player1 : players) {
+            if (player1.getName().equals(player.getName())) {
+                player.setName(player.getName() + "2");
+            }
+        }
+        stats.put(player.getName(),0);
+
+        players.add(player);
+    }
+
+    void play() {
+        if (players.isEmpty()) {
+            throw new IllegalArgumentException("Nie podano zadnego gracza");
+        }
 
         try {
+            int randomNumber;
+            boolean bingo = false;
+
             do {
-                userNumber = player.guess();
-                System.out.println("Strzal gracza " + player.getName() + " to " + userNumber);
-
                 randomNumber = cube.nextInt(6) + 1;
-                System.out.println("Wylosowano: " + randomNumber);
 
-                if (randomNumber == userNumber) {
-                    System.out.println("Bingo!!!");
-                    break;
-                } else {
-                    System.out.println("Zle :(");
+                for (Player player1 : players) {
+                    if (player1.guess() == randomNumber) {
+                        System.out.println("Gracz " + player1.getName() + " trafil!");
+                        bingo = true;
+
+                        stats.put(player1.getName(), stats.get(player1.getName()) + 1);
+                    }
+                }
+                if (bingo) {
+                    System.out.println("Wylosowana liczba to: " + randomNumber);
                 }
 
-            } while (true);
+            } while (!bingo);
 
         } catch (IllegalArgumentException e) {
             System.err.println("Blad: " + e.getMessage());

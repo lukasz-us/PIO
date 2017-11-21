@@ -16,8 +16,7 @@ public class PlayerHuman extends Player {
     @Override
     public int guess() {
         System.out.print("Podaj liczbe: ");
-        int returnValue = getNumber.nextInt();
 
-        return returnValue;
+        return getNumber.nextInt();
     }
 }
