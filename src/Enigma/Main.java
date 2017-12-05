@@ -4,23 +4,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String alphabet = "ABCDEFGHIJKLMNOUPRSTWYZ";
-        String in = "ABCZ";
+        Alphabet alphabet = new Alphabet(Alphabet.ALPHA_UP_WITH_SPACE);
 
-        StringBuilder out = new StringBuilder();
+        Cipher cipher = new Cipher(alphabet);
 
-        for (int i = 0, len = in.length(); i < len; i++) {
+        String in = "ABC ";
 
-            int ch = in.charAt(i);
+        System.out.println(alphabet.isTextValid(in));
 
-            int idx = alphabet.indexOf(ch);
+        System.out.println(cipher.encrypt(in));
 
-            idx = (idx + 1) % alphabet.length();
-
-            ch = alphabet.charAt(idx);
-            out.append((char) ch);
-        }
-
-        System.out.println(out);
     }
 }
