@@ -1,4 +1,4 @@
-package com.company;
+package DiceGame;
 
 public class Main {
 

@@ -8,11 +8,13 @@ public class Main {
 
         Cipher cipher = new Cipher(alphabet);
 
-        String in = "ABC ";
+        String in = "ABCD";
 
         System.out.println(alphabet.isTextValid(in));
-
-        System.out.println(cipher.encrypt(in));
+        in=cipher.encrypt(in);
+        System.out.println(in);
+        in=cipher.decrypt(in);
+        System.out.println(in);
 
     }
 }

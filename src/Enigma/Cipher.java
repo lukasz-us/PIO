@@ -19,8 +19,26 @@ public class Cipher {
     }
 
     public String encrypt(String text) {
+        return processText(text, new CharProc(){
+            @Override
+            public int process (int idx, int key){
+                return idx+key;
+            }
+        });
+    }
 
-        if (!alphabet.isTextValid(text)){
+    public String decrypt(String text) {
+
+        return processText(text, new CharProc(){
+            @Override
+            public int process (int idx, int key){
+                return idx-key;
+            }
+        });
+    }
+
+    private String processText(String text, CharProc charProc) {
+        if (!alphabet.isTextValid(text)) {
             throw new IllegalArgumentException("Tekst zawiera znaki z poza alfabetu");
         }
 
@@ -32,7 +50,7 @@ public class Cipher {
 
             int idx = alphabet.indexOf(ch);
 
-            idx = (idx + 1) % alphabet.length();
+                idx = charProc.process(idx,key);
 
             ch = alphabet.charAt(idx);
             out.append((char) ch);

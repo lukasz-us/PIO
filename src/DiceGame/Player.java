@@ -1,4 +1,4 @@
-package com.company;
+package DiceGame;
 
 public abstract class Player {
 
